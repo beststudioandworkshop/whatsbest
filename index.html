@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            overflow: hidden;
+            position: relative;
+        }
+        .flying-chair {
+            position: absolute;
+            width: 100px; /* Adjust the chair width as needed */
+            transform-origin: center center;
+        }
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .icons {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            justify-content: space-between;
+            width: 80px;
+        }
+        .icon {
+            font-size: 24px;
+            color: #333;
+        }
+        .title {
+            font-family: 'Inter', sans-serif;
+            font-size: 160px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        .title-behind {
+            position: absolute;
+            top: 00px; /* Adjust the position as needed */
+            left: 00px; /* Adjust the position as needed */
+            font-family: 'Inter', sans-serif;
+            font-size: 160px; /* Slightly larger than the main title */
+            font-weight: bold;
+            color: red;
+            opacity: 0.4; /* Adjust the opacity as needed */
+            z-index: -1; /* Behind the main title */
+        }
+        .subtitle {
+            font-family: 'Alte Haas Grotesk', sans-serif;
+            font-size: 40px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="icons">
+        <a href="mailto:your@email.com" class="icon">✉️</a>
+        <a href="https://www.instagram.com/" class="icon">📷</a>
+    </div>
+    
+    <div class="container">
+        <div class="title">
+            BEST
+            <div class="title-behind">BEST</div>
+        </div>
+        <div class="subtitle">
+            Studio + Workshop
+        </div>
+    </div>
+    
+    <script>
+        const chairWidth = 100; // Width of the chair
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        const landingPortion = 0.3; // Portion of the screen for chairs to land (30% from the bottom)
+        const chairImages = ["chair1.png", "chair2.png", "chair3.png", "chair4.png"]; // Array of chair image file names
+        const chairLifetime = 5 * 60 * 1000; // 5 minutes in milliseconds
+
+        function createFallingChair() {
+            const fallingChair = document.createElement("img");
+            fallingChair.src = chairImages[Math.floor(Math.random() * chairImages.length)]; // Choose a random chair image
+            fallingChair.alt = "Falling Chair";
+            fallingChair.classList.add("flying-chair");
+            fallingChair.style.setProperty("--width", chairWidth + "px");
+            fallingChair.style.top = -100 + "px";
+            fallingChair.style.left = (Math.random() * viewportWidth) + "px";
+            document.body.appendChild(fallingChair);
+            animateFall(fallingChair);
+        }
+
+        function animateFall(fallingChair) {
+            let posY = parseFloat(fallingChair.style.top);
+            const landingHeight = viewportHeight - (viewportHeight * landingPortion);
+            const randomLandingY = landingHeight + (Math.random() * (viewportHeight - landingHeight - chairWidth));
+
+            function updatePosition() {
+                posY += 3; // Adjust the falling speed as needed
+
+                if (posY >= randomLandingY) {
+                    posY = randomLandingY;
+                    setTimeout(() => {
+                        document.body.removeChild(fallingChair);
+                    }, chairLifetime);
+                }
+
+                fallingChair.style.top = posY + "px";
+                requestAnimationFrame(updatePosition);
+            }
+
+            updatePosition();
+        }
+
+        // Continuous flow of falling chairs
+        setInterval(createFallingChair, 1000); // Create a new falling chair every 1 second
+    </script>
+</body>
+</html>
