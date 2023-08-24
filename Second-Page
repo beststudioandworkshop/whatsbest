@@ -44,6 +44,7 @@
             font-weight: bold;
             margin-bottom: 10px;
             position: relative;
+            cursor: pointer; /* Add cursor pointer */
         }
         .title-behind {
             position: absolute;
@@ -60,6 +61,7 @@
             font-family: 'Alte Haas Grotesk', sans-serif;
             font-size: 40px;
             color: #666;
+            cursor: pointer; /* Add cursor pointer */
         }
         .background-container {
             position: absolute;
@@ -81,16 +83,23 @@
     <div class="background-container"></div>
     
     <div class="container">
-        <div class="title">
+        <!-- Add onclick attribute to navigate to the first page -->
+        <div class="title" onclick="navigateToFirstPage()">
             BEST
             <div class="title-behind">BEST</div>
         </div>
-        <div class="subtitle">
+        <!-- Add onclick attribute to navigate to the first page -->
+        <div class="subtitle" onclick="navigateToFirstPage()">
             Studio + Workshop
         </div>
     </div>
 
     <script>
+        // Function to navigate back to the first page
+        function navigateToFirstPage() {
+            window.location.href = 'index.html';
+        }
+
         const imageFolder = 'images/'; // Path to the folder containing images
         const imageExtension = '.jpg'; // Extension of the images
         const animationDuration = 2; // Duration of animation in seconds
