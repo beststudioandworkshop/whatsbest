@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alte+Haas+Grotesk&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -43,37 +45,39 @@
             font-weight: bold;
             margin-bottom: 10px;
             position: relative;
+            cursor: pointer;
         }
         .title-behind {
             position: absolute;
-            top: 00px; /* Adjust the position as needed */
-            left: 00px; /* Adjust the position as needed */
+            top: 0;
+            left: 0;
             font-family: 'Inter', sans-serif;
-            font-size: 160px; /* Slightly larger than the main title */
+            font-size: 160px;
             font-weight: bold;
             color: red;
-            opacity: 0.4; /* Adjust the opacity as needed */
-            z-index: -1; /* Behind the main title */
+            opacity: 0.4;
+            z-index: -1;
         }
         .subtitle {
             font-family: 'Alte Haas Grotesk', sans-serif;
             font-size: 40px;
             color: #666;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <div class="icons">
-        <a href="mailto:whatsbestdesign@gmail.com" class="icon">✉️</a>
+        <a href="mailto:your@email.com" class="icon">✉️</a>
         <a href="https://www.instagram.com/" class="icon">📷</a>
     </div>
     
     <div class="container">
-        <div class="title">
+        <div class="title" onclick="navigateToSecondPage()">
             BEST
             <div class="title-behind">BEST</div>
         </div>
-        <div class="subtitle">
+        <div class="subtitle" onclick="navigateToSecondPage()">
             Studio + Workshop
         </div>
     </div>
@@ -88,7 +92,7 @@
 
         function createFallingChair() {
             const fallingChair = document.createElement("img");
-            fallingChair.src = chairImages[Math.floor(Math.random() * chairImages.length)]; // Choose a random chair image
+            fallingChair.src = chairImages[Math.floor(Math.random() * chairImages.length)];
             fallingChair.alt = "Falling Chair";
             fallingChair.classList.add("flying-chair");
             fallingChair.style.setProperty("--width", chairWidth + "px");
@@ -122,6 +126,11 @@
 
         // Continuous flow of falling chairs
         setInterval(createFallingChair, 1000); // Create a new falling chair every 1 second
+
+        // Function to navigate to the second page
+        function navigateToSecondPage() {
+            window.location.href = 'Second_page.html';
+        }
     </script>
 </body>
 </html>
