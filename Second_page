@@ -44,7 +44,7 @@
             font-weight: bold;
             margin-bottom: 10px;
             position: relative;
-            cursor: pointer; /* Add cursor pointer */
+            cursor: pointer;
         }
         .title-behind {
             position: absolute;
