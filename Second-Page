@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            overflow: hidden;
+            position: relative;
+            transition: background-image 0.5s; /* Smooth transition for background image change */
+        }
+        .flying-chair {
+            position: absolute;
+            width: 100px; /* Adjust the chair width as needed */
+            transform-origin: center center;
+        }
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .icons {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            justify-content: space-between;
+            width: 80px;
+        }
+        .icon {
+            font-size: 24px;
+            color: #333;
+        }
+        .title {
+            font-family: 'Inter', sans-serif;
+            font-size: 160px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        .title-behind {
+            position: absolute;
+            top: 00px; /* Adjust the position as needed */
+            left: 00px; /* Adjust the position as needed */
+            font-family: 'Inter', sans-serif;
+            font-size: 160px; /* Slightly larger than the main title */
+            font-weight: bold;
+            color: red;
+            opacity: 0.4; /* Adjust the opacity as needed */
+            z-index: -1; /* Behind the main title */
+        }
+        .subtitle {
+            font-family: 'Alte Haas Grotesk', sans-serif;
+            font-size: 40px;
+            color: #666;
+        }
+        .background-container {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            z-index: -2;
+        }
+    </style>
+</head>
+<body>
+    <div class="icons">
+        <a href="mailto:whatsbestdesign@gmail.com" class="icon">✉️</a>
+        <a href="https://www.instagram.com/" class="icon">📷</a>
+    </div>
+    
+    <div class="background-container"></div>
+    
+    <div class="container">
+        <div class="title">
+            BEST
+            <div class="title-behind">BEST</div>
+        </div>
+        <div class="subtitle">
+            Studio + Workshop
+        </div>
+    </div>
+
+    <script>
+        const imageFolder = 'images/'; // Path to the folder containing images
+        const imageExtension = '.jpg'; // Extension of the images
+        const animationDuration = 2; // Duration of animation in seconds
+
+        const backgroundImages = [];
+
+        // Load all images from the folder
+        const totalImages = 14; // Replace with the total number of images
+        for (let i = 1; i <= totalImages; i++) {
+            backgroundImages.push(`${imageFolder}${i}${imageExtension}`);
+        }
+
+        let currentIndex = 0;
+        const backgroundContainer = document.querySelector('.background-container');
+
+        // Function to change background image
+        function changeBackground() {
+            currentIndex = (currentIndex + 1) % backgroundImages.length;
+            backgroundContainer.style.backgroundImage = `url(${backgroundImages[currentIndex]})`;
+        }
+
+        // Start the background change animation
+        setInterval(changeBackground, animationDuration * 1000);
+    </script>
+</body>
+</html>
