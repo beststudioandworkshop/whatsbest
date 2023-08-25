@@ -17,7 +17,7 @@
         }
         .flying-chair {
             position: absolute;
-            width: 100px; /* Adjust the chair width as needed */
+            width: 100px;
             transform-origin: center center;
         }
         .container {
@@ -43,24 +43,11 @@
             font-weight: bold;
             margin-bottom: 10px;
             position: relative;
-            cursor: pointer;
-        }
-        .title-behind {
-            position: absolute;
-            top: 0;
-            left: 0;
-            font-family: 'Inter', sans-serif;
-            font-size: 160px;
-            font-weight: bold;
-            color: red;
-            opacity: 0.4;
-            z-index: -1;
         }
         .subtitle {
             font-family: 'Alte Haas Grotesk', sans-serif;
             font-size: 40px;
             color: #666;
-            cursor: pointer;
         }
     </style>
 </head>
@@ -71,22 +58,17 @@
     </div>
     
     <div class="container">
-        <div class="title" onclick="navigateToSecondPage()">
-            BEST
-            <div class="title-behind">BEST</div>
-        </div>
-        <div class="subtitle" onclick="navigateToSecondPage()">
-            Studio + Workshop
-        </div>
+        <div class="title">BEST</div>
+        <div class="subtitle">Studio + Workshop</div>
     </div>
     
     <script>
-        const chairWidth = 100; // Width of the chair
+        const chairWidth = 100;
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
-        const landingPortion = 0.3; // Portion of the screen for chairs to land (30% from the bottom)
-        const chairImages = ["chair1.png", "chair2.png", "chair3.png", "chair4.png"]; // Array of chair image file names
-        const chairLifetime = 5 * 60 * 1000; // 5 minutes in milliseconds
+        const landingPortion = 0.3;
+        const chairImages = ["chair1.png", "chair2.png", "chair3.png", "chair4.png"];
+        const chairLifetime = 5 * 60 * 1000;
 
         function createFallingChair() {
             const fallingChair = document.createElement("img");
@@ -106,7 +88,7 @@
             const randomLandingY = landingHeight + (Math.random() * (viewportHeight - landingHeight - chairWidth));
 
             function updatePosition() {
-                posY += 3; // Adjust the falling speed as needed
+                posY += 3;
 
                 if (posY >= randomLandingY) {
                     posY = randomLandingY;
@@ -122,13 +104,7 @@
             updatePosition();
         }
 
-        // Continuous flow of falling chairs
-        setInterval(createFallingChair, 1000); // Create a new falling chair every 1 second
-
-        // Function to navigate to the second page
-        function navigateToSecondPage() {
-            window.location.href = 'Second_page.html';
-        }
+        setInterval(createFallingChair, 1000);
     </script>
 </body>
 </html>
